@@ -10,7 +10,7 @@
         {
             "type": "Script Operator",
             "args": {
-                "content": "https://raw.githubusercontent.com/Seameee/override-hub/refs/heads/main/selfuse_test_remote.yaml",
+                "content": "https://raw.githubusercontent.com/fomaper/override-hub/refs/heads/main/selfuse_test_remote.yaml",
                 "mode": "link",
                 "arguments": {}
             },
