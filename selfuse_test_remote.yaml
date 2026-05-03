@@ -84,7 +84,7 @@ FilterSave: &FilterSave '^(?=.*((\s|-)0\.[0-9](×|x|X)|低倍率|省流))^(?!.*(
 FilterAdvance: &FilterAdvance '^(?=.*((?i)(\s|-)(([1-9](\.\d+)?)(×|x|X))|专线|专用|高级|急速|高倍率|IEPL|IPLC|AIA|CTM|CC|iepl|iplc|aia|ctm|cc|Advance))^(?!.*(落地|家宽|自建|Landing)).*$'
 FilterLanding: &FilterLanding '^(?=.*((?i)落地|家宽|自建|Landing)).*$'
 FilterAll: &FilterAll '^(?=.*(.))(?!.*((?i)群|邀请|返利|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|更新|作者|加入|(\b(USE|USED|TOTAL|EXPIRE|EMAIL|Panel|Channel|Author)\b|(\d{4}-\d{2}-\d{2}|\d+G)))).*$'
-FilterTunnel: &FilterTunnel '^(?=.*(香港|HK|Hong|🇭🇰|日本|JP|Japan|🇯🇵|新加坡|狮城|SG|Singapore|🇸🇬|韩国|KR|Korea|🇰🇷|美国|US|United States|America| ))^(?!.*(网站|地址|剩余|过期|时间|有效|网址|禁止|邮箱|发布|客服|订阅|节点|落地|家宽|自建|Landing|IPv6|ipv6|V6|v6)).*$'
+FilterTunnel: &FilterTunnel '^(?=.*(香港|HK|Hong|🇭🇰|日本|JP|Japan|🇯🇵|新加坡|狮城|SG|Singapore|🇸🇬|韩国|KR|Korea|🇰🇷|美国|US|United States|America|🇺🇸))^(?!.*(网站|地址|剩余|过期|时间|有效|网址|禁止|邮箱|发布|客服|订阅|节点|落地|家宽|自建|Landing|IPv6|ipv6|V6|v6)).*$'
 
 Select: &Select {type: select, url: 'https://cp.cloudflare.com/generate_204', disable-udp: false, hidden: false, include-all: true}
 Auto: &Auto {type: url-test, url: 'https://cp.cloudflare.com/generate_204', interval: 300, tolerance: 50, disable-udp: false, hidden: true, include-all: true}
@@ -102,7 +102,8 @@ proxy-groups:
   # 特殊分组
   - {name: 省流选择, <<: *Auto, filter: *FilterSave, icon: https://testingcf.jsdelivr.net/gh/Orz-3/mini@master/Color/Urltest.png}
   - {name: 高级选择, <<: *Auto, filter: *FilterAdvance, icon: https://testingcf.jsdelivr.net/gh/Orz-3/mini@master/Color/Urltest.png}
-  - {name: 中继选择, <<: *Select, filter: *FilterAll, icon: https://testingcf.jsdelivr.net/gh/Orz-3/mini@master/Color/Final.png}
+  - {name: 中继自动选择, <<: *Auto, filter: *FilterTunnel, icon: https://testingcf.jsdelivr.net/gh/Orz-3/mini@master/Color/Urltest.png}
+  - {name: 中继选择, type: select, proxies: [中继自动选择, 自动选择, 香港节点, 日本节点, 韩国节点, 狮城节点, 美国节点], url: https://cp.cloudflare.com/generate_204, icon: https://testingcf.jsdelivr.net/gh/Orz-3/mini@master/Color/Final.png}
   - {name: 落地选择, <<: *Select, filter: *FilterLanding, icon: https://testingcf.jsdelivr.net/gh/Orz-3/mini@master/Color/Global.png}
   - {name: 节点轮询, <<: *Loadbalance, filter: *FilterTunnel, icon: https://testingcf.jsdelivr.net/gh/Orz-3/mini@master/Color/Roundrobin.png}
 
